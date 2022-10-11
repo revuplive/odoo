@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <template id="product_deal" name="Product Deal">
+        <section class="loon-product-deal oe_website_sale">
+            <div class="container d-flex justify-content-center">
+                <div class="row text-center w-100 loon-product-row">
+                    <div class="col-lg-9">
+                        <div class="product-container">
+                            <div class="product-loon">
+                                <div class="row">
+                                    <div class="col-lg-5">
+                                        <img class="img img-fluid w-100" src="https://picsum.photos/300/300"/>
+                                    </div>
+                                    <div class="col-lg-7">
+                                        <p>Placeholder Text</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 countdown-column">
+                        <div class="col-lg-12">
+                            <h3>Lorem ipsum chocolate money teabag</h3>
+                        </div>
+                        <div class="col-lg-12 countdown-numbers">
+                            <div class="container">
+                                <div class="container-number">
+                                    <span class="number countdown-day">3</span><br/>
+                                    <span class="letter">Days</span><br/>
+                                </div>
+                                <div class="container-number">
+                                    <span class="number countdown-hour">5</span><br/>
+                                    <span class="letter">Hours</span><br/>
+                                </div>
+                                <div class="container-number">
+                                    <span class="number countdown-minute">18</span><br/>
+                                    <span class="letter">Minutes</span><br/>
+                                </div>
+                                <div class="container-number">
+                                    <span class="number countdown-second">30</span><br/>
+                                    <span class="letter">Seconds</span><br/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <button class="btn btn-primary">
+                                Lorem ipsum
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </template>
+
+    <template id="product_deal_snippets_inherit" inherit_id="website.snippets" name="Product Deal Inherit">
+        <xpath expr="//div[@id='snippet_structure']/div[hasclass('o_panel_body')]" position="inside">
+            <t t-snippet="theme_loonwholesale.product_deal"
+               t-thumbnail="/theme_loonwholesale/static/description/banner.png"/>
+        </xpath>
+    </template>
+
+    <template id="product_deal_snippet_options_inherit" inherit_id="website.snippet_options">
+        <xpath expr="." position="inside">
+            <div data-js="clean_product_deal" data-selector=".loon-product-deal">
+                <we-input class="o_we_large" string="Test Input" data-select-data-attribute=""
+                          data-attribute-name="testInput"/>
+            </div>
+        </xpath>
+    </template>
+
+</odoo>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="res_config_settings_view_form" model="ir.ui.view">
+            <field name="name">res.config.settings.view.form.inherit.loonwholesale</field>
+            <field name="model">res.config.settings</field>
+            <field name="priority" eval="0"/>
+            <field name="inherit_id" ref="website.res_config_settings_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//div[@id='seo_settings']" position="after">
+                    <h2>Product Deals</h2>
+                    <div class="row mt16 o_settings_container" id="seo_settings">
+                        <div class="col-12 col-lg-12 o_setting_box" id="product_deal">
+                            <div class="">
+                                <label for="product_deal"/>
+                                <div class="text-muted">
+                                    Product Deal Product.
+                                </div>
+                            </div>
+                            <div class="o_setting_right_pane" id="product_data_settings">
+                                <field name="product_deal"/>
+                            </div>
+                        </div>
+                        <div class="col-12 col-lg-12 o_setting_box" id="product_date">
+                            <div class="">
+                                <label for="product_date"/>
+                                <div class="text-muted">
+                                    Deal End Date.
+                                </div>
+                            </div>
+                            <div class="o_setting_right_pane" id="product_date_settings">
+                                <field name="product_date"/>
+                            </div>
+                        </div>
+                    </div>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>
