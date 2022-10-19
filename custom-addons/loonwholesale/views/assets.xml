@@ -1,0 +1,13 @@
+<odoo>
+    <record id="loonwholesale_home_css" model="ir.asset">
+            <field name="name">LoonwholeSale Home SCSS</field>
+            <field name="bundle">web.assets_frontend</field>
+            <field name="path">/loonwholesale/static/src/scss/home.scss</field>
+        </record>
+        <record id="loonwholesale_home_js" model="ir.asset">
+            <field name="name">LoonwholeSale Home JS</field>
+            <field name="bundle">web.assets_frontend</field>
+            <field name="path">/loonwholesale/static/src/js/home.js</field>
+        </record>
+    </odoo>
+    

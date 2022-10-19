@@ -1,0 +1,49 @@
+version: "3.4"
+services:
+  odoo:
+    image: odoo:15.0
+    ports:
+     - "8089:8069"
+     - "8092:8072"
+    deploy:
+     replicas: 1
+     update_config:
+       parallelism: 1
+       delay: 10s
+       order: start-first
+     restart_policy:
+       condition: on-failure
+       delay: 10s
+    environment:
+     - NODE_ENV=development
+     - DB_PORT_5432_TCP_ADDR=db
+    entrypoint:
+      - odoo
+      - -d
+      - loonwholesale
+      - -u
+      - loonwholesale
+    volumes:
+     - ./config:/etc/odoo
+     - ./custom-addons:/mnt/extra-addons
+     - ./odoo-data:/var/lib/odoo
+    networks:
+     - loonwholesale
+    
+  db15:
+    image: postgres
+    ports:
+     - "5558:5432"
+    environment:
+     - POSTGRES_PASSWORD=odoo
+     - POSTGRES_USER=odoo
+    volumes:
+     - pgdata:/var/lib/postgresql/data
+    networks:
+     - loonwholesale
+
+networks:
+  loonwholesale:
+
+volumes:
+  pgdata:

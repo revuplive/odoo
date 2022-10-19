@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <template id="loon_banner_snippet" name="One Banner Snippet">
+
+        <div class="container-fluid">
+            <div id="slider" class="carousel slide" data-ride="carousel" data-interval="0" style="margin: 0 12px;">
+                <div class="carousel-inner" style="padding: 0;">
+                    <t t-set="count" t-value="0" />
+                    <t t-foreach="sliders" t-as="slider" t-key="s1">
+                            <div t-att-class="'carousel-item active' if (count&lt;1) else 'carousel-item' " style="min-height: 476px;">
+                                <img class="img img-fluid d-block" t-att-src="slider.website_url" data-name="Image" t-att-data-index="count" loading="lazy" data-original-id="215" data-original-src="slider.website_url" data-mimetype="image/jpeg" style="" data-original-title="" title="" aria-describedby="tooltip240550"/>
+                            </div>
+                        <t t-set="count" t-value="count + 1" />
+                    </t>
+                </div>
+                <t t-if="len(sliders)>0">
+                    <ul class="carousel-indicators">
+                        <t t-set="count_cc" t-value="0" />
+                        <t t-foreach="sliders" t-as="slider" t-key="s1">
+                                <li data-target="#slider" t-att-data-slide-to="count_cc" t-att-style="'background-image: url(%s)' % (slider.website_url)" t-att-class="'active' if count_cc==0 else ''"></li>
+                            <t t-set="count_cc" t-value="count_cc + 1" />
+                        </t>
+                    </ul>
+                    <a class="carousel-control-prev o_we_no_overlay" href="#slider" data-slide="prev" aria-label="Previous" title="Previous">
+                        <span class="fa fa-chevron-left fa-2x text-white"></span>
+                        <span class="sr-only o_default_snippet_text">Previous</span>
+                    </a>
+                    <a class="carousel-control-next o_we_no_overlay" href="#slider" data-slide="next" aria-label="Next" title="Next">
+                        <span class="fa fa-chevron-right fa-2x text-white" data-original-title="" title="" aria-describedby="tooltip851793"></span>
+                        <span class="sr-only o_default_snippet_text">Next</span>
+                    </a>
+                </t>
+            </div>
+        </div>
+
+    </template>
+</odoo>

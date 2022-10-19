@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <template id="loon_featured_products_snippet" name="One Banner Snippet">
+        <div id="cart-summary" class="cart-summary">
+            <div class="cart-summary__inner">
+                <a class="cart-summary__close toggle-cart-summary" href="#">
+                    <svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+                        <title>Left</title>
+                        <path d="M15.41 16.09l-4.58-4.59 4.58-4.59L14 5.5l-6 6 6 6z"></path>
+                        <path d="M0-.5h24v24H0z" fill="none"></path>
+                    </svg>
+                    <span class="beside-svg">Continue shopping</span>
+                </a>
+
+                <div class="cart-summary__header cart-summary__section">
+                    <h5 class="cart-summary__title">Your Order</h5>
+                    <a class="cart-summary__cart-link" href="/cart">View cart</a>
+                </div>
+
+                <div class="cart-summary__subtotal cart-summary__section">
+                    <span class="cart-summary__subtotal-label">Subtotal:</span>
+                    <span class="amount">
+                        <span class="theme-money">$240.00</span>
+                    </span>
+                </div>
+
+                <form class="cart-form" action="/cart" method="post">
+                    <div class="cart-summary__buttons cart-summary__section border-bottom">
+                        <button type="submit" name="checkout" class="btn wide" value="Checkout">Checkout</button>
+                    </div>
+                </form>
+
+                <div class="cart-summary__item-list-header cart-summary__section cart-accordion-btn-container">
+                    <h6 class="cart-summary__item-list-header__title" id="cart-summary-products-header">Products</h6>
+                    <small class="cart-summary__item-list-header__count">(3 items)</small>
+                    <button class="cart-accordion-btn btn plain-text" aria-labelledby="cart-summary-products-header">
+                        <svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M7.41 7.84L12 12.42l4.59-4.58L18 9.25l-6 6-6-6z"></path>
+                            <path d="M0-.75h24v24H0z" fill="none"></path>
+                        </svg>
+                    </button>
+                </div>
+
+                <div class="cart-summary__item-list">
+                    <form class="cart-form cart-summary__section" action="/cart" method="post">
+                        <div class="cart-summary-item">
+                            <div class="cart-summary-item__image">
+                                <a href="/products/loon-air-lush-ice?variant=32377552666701">
+                                    <img src="//cdn.shopify.com/s/files/1/0229/9399/3805/products/LUSHICE_2_120x.png?v=1588897444" alt="LOON AIR+ - LUSH ICE 10-PACK" class="addtc-np" />
+                                </a>
+                            </div>
+                            <div class="cart-summary-item__detail">
+                                <div class="cart-summary-item__title-variant">
+                                    <a class="cart-summary-item__title" href="/products/loon-air-lush-ice?variant=32377552666701">LOON AIR+ - LUSH ICE 10-PACK</a>
+                                </div>
+                                <div class="cart-summary-item__price">
+                                    <span class="cart-summary-item__price-current theme-money">$240.00</span>
+                                </div>
+                                <div class="cart-summary-item__quantity">
+                                    <div class="qty-adjuster qty-adjuster--with-remove qty-adjuster--ajax" data-line-item-id="32377552666701">
+                                        <div class="qty-adjuster__inner">
+                                            <button class="qty-adjuster__down" aria-label="Decrease">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-minus">
+                                                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                                                </svg>
+                                            </button>
+                                            <input class="qty-adjuster__value" type="text" pattern="[0-9]*" name="updates[]" value="3" aria-label="Quantity" />
+                                            <button class="qty-adjuster__up" aria-label="Increase">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus">
+                                                    <line x1="12" y1="5" x2="12" y2="19"></line>
+                                                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                                                </svg>
+                                            </button>
+                                        </div>
+                                        <a class="qty-adjuster__remove" href="#">Remove</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </template>
+</odoo>
