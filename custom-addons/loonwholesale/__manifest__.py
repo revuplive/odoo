@@ -11,11 +11,16 @@
     'website': "https://magnetposts.com",
     'depends': ['base', 'website_sale'],
     'data': [
+        "security/ir.model.access.csv",
         "views/assets.xml",
+        "views/product_template_view.xml",
         "views/ir_attachment.xml",
         "views/snippets/banner.xml",
         "views/snippets/collections.xml",
         "views/snippets/featured_products.xml",
+        "views/snippets/cart_summary.xml",
+        "wizard/product_hook_view.xml",
+        "views/template.xml"
     ],
     'assets': {
         'web.assets_frontend': [

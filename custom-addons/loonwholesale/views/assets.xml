@@ -1,13 +1,23 @@
 <odoo>
     <record id="loonwholesale_home_css" model="ir.asset">
-            <field name="name">LoonwholeSale Home SCSS</field>
-            <field name="bundle">web.assets_frontend</field>
-            <field name="path">/loonwholesale/static/src/scss/home.scss</field>
-        </record>
-        <record id="loonwholesale_home_js" model="ir.asset">
-            <field name="name">LoonwholeSale Home JS</field>
-            <field name="bundle">web.assets_frontend</field>
-            <field name="path">/loonwholesale/static/src/js/home.js</field>
-        </record>
-    </odoo>
+        <field name="name">LoonwholeSale Home SCSS</field>
+        <field name="bundle">web.assets_frontend</field>
+        <field name="path">/loonwholesale/static/src/scss/home.scss</field>
+    </record>
+    <record id="loonwholesale_product_css" model="ir.asset">
+        <field name="name">LoonwholeSale Product SCSS</field>
+        <field name="bundle">web.assets_frontend</field>
+        <field name="path">/loonwholesale/static/src/scss/product_page.scss</field>
+    </record>
+    <record id="loonwholesale_home_js" model="ir.asset">
+        <field name="name">LoonwholeSale Home JS</field>
+        <field name="bundle">web.assets_frontend</field>
+        <field name="path">/loonwholesale/static/src/js/home.js</field>
+    </record>
+    <!-- <record id="loonwholesale_home_js" model="ir.asset">
+        <field name="name">LoonwholeSale Home JS</field>
+        <field name="bundle">web.assets_frontend</field>
+        <field name="path">/loonwholesale/static/src/js/form_widget.js</field>
+    </record> -->
+</odoo>
     

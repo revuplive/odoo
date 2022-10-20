@@ -1,4 +1,4 @@
-odoo.define('blogpost.blogpost', function (require) {
+odoo.define('loonwholesale.loonwholesale', function (require) {
     'use strict';
 
     var publicWidget = require('web.public.widget');
@@ -55,6 +55,7 @@ odoo.define('blogpost.blogpost', function (require) {
         collection_show: function(result) {
             const myNodelist = document.querySelectorAll("section.s_three_columns");
             [...myNodelist][0].innerHTML = result;
+            [...myNodelist][0].style.paddingTop = '3.5rem !important';
         },
 
         feature_show: function(result) {

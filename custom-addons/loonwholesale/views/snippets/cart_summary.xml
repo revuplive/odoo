@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
-    <template id="loon_featured_products_snippet" name="One Banner Snippet">
+    <template id="loon_cart_summary_snippet" name="One Banner Snippet">
         <div id="cart-summary" class="cart-summary">
             <div class="cart-summary__inner">
                 <a class="cart-summary__close toggle-cart-summary" href="#">

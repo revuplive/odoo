@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="product_upload_create_wizard_view_form" model="ir.ui.view">
+        <field name="name">product.wizard.wizard.form</field>
+        <field name="model">product.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Product Uplaod Window">
+                <group>
+                    <field name="name"/>
+                    <field name="product_file"/>
+                </group>
+                <footer>
+                    <button string="Upload" class="btn-primary" data-hotkey="x" name="action_uplaod" type="object" />
+                    <button string="Close" class="btn-secondary" special="cancel" data-hotkey="z"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_product_upload_create_action" model="ir.actions.act_window">
+        <field name="name">Create Blog User</field>
+        <field name="res_model">product.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="product_upload_create_wizard_view_form"/>
+        <field name="target">new</field>
+    </record>
+
+    <menuitem
+        id="menu_product_upload_menu"
+        groups="website.group_website_designer"
+        sequence="23"
+        name="Product Uplaod"
+        action="action_product_upload_create_action"
+        parent="website.menu_website_configuration"/>
+
+</odoo>
