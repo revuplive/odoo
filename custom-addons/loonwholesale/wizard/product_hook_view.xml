@@ -10,6 +10,24 @@
                     <field name="name"/>
                     <field name="product_file"/>
                 </group>
+                <group>
+                    <ul>
+                        <li>Maximun file size - 128MB.</li>
+                        <li>Only allow file type is ZIP.</li>
+                        <li> Guidelines - 
+                            <pre>
+                                UPLOADING FORMAT
+                                ----------------
+                                - folder_name/category/product/product_img.png/jpg
+                                - folder_name/category/product/varient/product_img.png/jpg
+
+                                Example:
+                                - Loon/Loon Typhoon, Tanks, and Coils/Baby Blue Typhoon.png
+                                - Loon/Loon Reloaded + Reloaded Pods/Black/Black Reloaded.png
+                            </pre>
+                        </li>
+                    </ul>
+                </group>
                 <footer>
                     <button string="Upload" class="btn-primary" data-hotkey="x" name="action_uplaod" type="object" />
                     <button string="Close" class="btn-secondary" special="cancel" data-hotkey="z"/>

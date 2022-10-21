@@ -6,7 +6,143 @@
         </xpath>
 
         <xpath expr="//div[@id='wrapwrap']" position="before">
-            <t t-call="loonwholesale.loon_cart_summary_snippet"/>
+            <t t-call="loonwholesale.loon_cart_summary_snippet" />
+        </xpath>
+        
+    </template>
+
+    <template id="template_header_default_extend">
+        <ul id="bottom_menu_ids" class="bottom_menu_list">
+            <li class="bottom_menu_list__item"></li>
+        </ul>
+    </template>
+
+    <template id="loon_login_layout" name="Login Page" inherit_id="web.login">
+        <xpath expr="//form[hasclass('oe_login_form')]" position="replace">
+            <div class="container py-md-4 py-3">
+                <div class="main-grid-contact">
+                    <div class="row mt-5 mx-0">
+                        <h4 class="mb-4 sec-title-w3">Login with</h4>
+
+                        <div class='col-lg-5 content-form-left p-0'>
+                            <div id="nsl-custom-login-form-3 p-md-5 p-4" class='nsl-custom-auth-form-3'>
+                                <div class="nsl-container" data-align="center">
+                                    <div class="nsl-container-buttons">
+                                        <t t-call="auth_oauth.providers" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class='col-lg-1 seprator'>
+                            <div class='top-line'></div>
+                            <div class='middle-content'>
+                                <span>OR</span>
+                            </div>
+                            <div class='bottom-line'></div>
+                        </div>
+
+                        <form class="oe_login_form init_form" role="form" t-attf-action="/web/login" method="post" onsubmit="this.action = '/web/login' + location.hash">
+                            <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()" />
+
+                            <div class="form-group field-db" t-if="databases and len(databases) &gt; 1">
+                                <label for="db" class="col-form-label">Database</label>
+                                <div t-attf-class="input-group {{'input-group-sm' if form_small else ''}}">
+                                    <input type="text" name="db" t-att-value="request.db" id="db" t-attf-class="form-control #{'form-control-sm' if form_small else ''}" required="required" readonly="readonly" />
+                                    <span class="input-group-append">
+                                        <a role="button" href="/web/database/selector" class="btn btn-secondary">
+                                            Select
+                                            <i class="fa fa-database" role="img" aria-label="Database" title="Database"></i>
+                                        </a>
+                                    </span>
+                                </div>
+                            </div>
+
+                            <div class="form-group field-login">
+                                <input type="text" placeholder="Email" name="login" t-att-value="login" id="login" t-attf-class="form-control #{'form-control-sm' if form_small else ''}" required="required" autofocus="autofocus" autocapitalize="off" />
+                            </div>
+
+                            <div class="form-group field-password">
+                                <input type="password" placeholder="Password" name="password" id="password" t-attf-class="form-control #{'form-control-sm' if form_small else ''}" required="required" autocomplete="current-password" t-att-autofocus="'autofocus' if login else None" maxlength="4096" />
+                            </div>
+
+                            <p class="alert alert-danger" t-if="error" role="alert">
+                                <t t-esc="error" />
+                            </p>
+                            <p class="alert alert-success" t-if="message" role="status">
+                                <t t-esc="message" />
+                            </p>
+
+                            <div t-attf-class="clearfix oe_login_buttons text-center mb-1 {{'pt-2' if form_small else 'pt-3'}}">
+                                <div class="input-group1 text-right">
+                                    <button class="btn button-style btn-block btn-primary" type="submit">
+                                        Log in
+                                        <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+                                    </button>
+                                </div>
+                                <div class="justify-content-between mt-2 d-flex small">
+                                    <a t-if="signup_enabled" t-attf-href="/web/signup?{{ keep_query() }}">Don't have an account?</a>
+                                    <a t-if="reset_password_enabled" t-attf-href="/web/reset_password?{{ keep_query() }}">Forget Password?</a>
+                                </div>
+                                <!-- <t t-if="debug">
+                                <button type="submit" name="redirect" value="/web/become" class="btn btn-link btn-sm btn-block">Log in as superuser</button>
+                            </t> -->
+                            </div>
+
+                            <input type="hidden" name="redirect" t-att-value="redirect" />
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </xpath>
+    </template>
+
+    <template id="loon_signup_layout" name="Signup Page" inherit_id="auth_signup.signup">
+        <xpath expr="//form[hasclass('oe_signup_form')]" position="replace">
+            <div class="container py-md-4 py-3">
+                <div class="main-grid-contact">
+                    <div class="row mt-5 mx-0">
+                        <h4 class="mb-4 sec-title-w3">Register with</h4>
+
+                        <div class='col-lg-5 content-form-left p-0'>
+                            <div id="nsl-custom-login-form-3 p-md-5 p-4" class='nsl-custom-auth-form-3'>
+                                <div class="nsl-container" data-align="center">
+                                    <div class="nsl-container-buttons">
+                                        <t t-call="auth_oauth.providers" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class='col-lg-1 seprator'>
+                            <div class='top-line'></div>
+                            <div class='middle-content'>
+                                <span>OR</span>
+                            </div>
+                            <div class='bottom-line'></div>
+                        </div>
+
+                        <form class="oe_signup_form init_form" role="form" method="post" t-if="not message">
+                            <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()" />
+
+                            <t t-call="blogpost.blog_signup_field">
+                                <t t-set="only_passwords" t-value="bool(token and not invalid_token)" />
+                            </t>
+
+                            <p class="alert alert-danger" t-if="error" role="alert">
+                                <t t-esc="error" />
+                            </p>
+                            <input type="hidden" name="redirect" t-att-value="redirect" />
+                            <input type="hidden" name="token" t-att-value="token" />
+                            <div class="text-center oe_login_buttons pt-3">
+                                <button type="submit" class="btn button-style btn-block btn-primary"> Sign up</button>
+                                <a t-attf-href="/web/login?{{ keep_query() }}" class="btn btn-link btn-sm" role="button">Already have an account?</a>
+                                <div class="o_login_auth" />
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
         </xpath>
     </template>
 
@@ -14,34 +150,44 @@
     <template id="loon_products" name="Products">
         <t t-call="website.layout">
             <div id="wrap" class="js_sale">
-                <div class="oe_structure oe_empty oe_structure_not_nearest" id="oe_structure_website_sale_products_1"/>
+                <div class="oe_structure oe_empty oe_structure_not_nearest" id="oe_structure_website_sale_products_1" />
                 <div class="container oe_website_sale pt-2">
                     <div class="row o_wsale_products_main_row">
                         <div id="products_grid" t-attf-class="col #{'o_wsale_layout_list' if layout_mode == 'list' else ''}">
                             <div t-if="bins" class="o_wsale_products_grid_table_wrapper">
                                 <table class="table table-borderless m-0" t-att-data-ppg="ppg" t-att-data-ppr="ppr">
-                                    <colgroup t-ignore="true">
-                                        <!-- Force the number of columns (useful when only one row of (x < ppr) products) -->
-                                        <col t-foreach="ppr" t-as="p"/>
-                                    </colgroup>
+                                    <thead id="item_grid">
+                                        <strong>Collection list</strong>
+                                    </thead>
                                     <tbody>
                                         <tr t-foreach="bins" t-as="tr_product">
-                                            <!-- <t t-foreach="tr_product" t-as="td_product">
-                                                <t t-if="td_product"> -->
-                                                    <!-- <t t-set="product" t-value="td_product['product']" /> -->
-                                                    <!-- We use t-attf-class here to allow easier customization -->
-                                                    <td 
-                                                        t-attf-class="oe_product"
-                                                        t-att-data-ribbon-id="td_product.id">
-                                                        <div t-attf-class="o_wsale_product_grid_wrapper o_wsale_product_grid_wrapper}">
-                                                            <t t-call="website_sale.products_item">
-                                                                <t t-set="product_image_big" t-value="td_product['x'] + td_product['y'] &gt; 2"/>
-                                                            </t>
+                                            <t t-foreach="tr_product" t-as="td_product">
+                                                <t t-if="td_product.image_512">
+                                                    <td class="oe_product">
+                                                        <div class="o_wsale_product_grid_wrapper o_wsale_product_grid_wrapper_1_1">
+                                                            <div class="card oe_product_cart" itemscope="itemscope" data-publish="on">
+                                                                <a class="o_product_link css_editable_mode_hidden" data-oe-model="ir.ui.view" data-oe-id="1245" data-oe-field="arch" data-oe-xpath="/t[1]/form[1]/a[1]" href="/shop/warranty-29"></a>
+                                                                <div class="card-body p-1 oe_product_image">
+                                                                    <a class="d-block h-100" itemprop="url" href="/shop/warranty-29">
+                                                                        <span data-oe-model="product.template" data-oe-id="29" data-oe-field="image_1920" data-oe-type="image" data-oe-expression="image_holder.image_1920" class="d-flex h-100 justify-content-center align-items-center" data-oe-xpath="/t[1]/form[1]/div[1]/a[1]/span[1]">
+                                                                            <t t-set="product_source" t-value="image_data_uri(td_product.image_512)" />
+                                                                            <img t-att-src="product_source" itemprop="image" class="img img-fluid" alt="Warranty" loading="lazy" style="" />
+                                                                        </span>
+                                                                    </a>
+                                                                </div>
+                                                                <div class="card-body p-0 o_wsale_product_information">
+                                                                    <div class="p-2 o_wsale_product_information_text">
+                                                                        <h6 class="o_wsale_products_item_title mb-1">
+                                                                            <a data-oe-model="product.template" data-oe-id="29" data-oe-field="name" data-oe-type="char" data-oe-expression="product.name" class="text-primary text-decoration-none" itemprop="name" data-oe-xpath="/t[1]/form[1]/div[2]/div[1]/h6[1]/a[1]" href="/shop/warranty-29" content="Warranty">Warranty</a>
+                                                                        </h6>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
                                                         </div>
                                                     </td>
-                                                <!-- </t>
-                                                <td t-else=""/>
-                                            </t> -->
+                                                </t>
+                                            </t>
+
                                         </tr>
                                     </tbody>
                                 </table>
@@ -50,13 +196,31 @@
                                 <div class="text-center text-muted mt128 mb256">
                                     <t t-if="not search">
                                         <h3 class="mt8">No product defined</h3>
-                                        <p t-if="category">No product defined in category "<strong t-esc="category.display_name"/>".</p>
+                                        <p t-if="category">
+                                            No product defined in category "
+                                            <strong t-esc="category.display_name" />
+                                            ".
+                                        </p>
                                     </t>
                                     <t t-else="">
                                         <h3 class="mt8">No results</h3>
-                                        <p>No results for "<strong t-esc='search'/>"<t t-if="category"> in category "<strong t-esc="category.display_name"/>"</t>.</p>
+                                        <p>
+                                            No results for "
+                                            <strong t-esc='search' />
+                                            "
+                                            <t t-if="category">
+                                                in category "
+                                                <strong t-esc="category.display_name" />
+                                                "
+                                            </t>
+                                            .
+                                        </p>
                                     </t>
-                                    <p t-ignore="true" groups="sales_team.group_sale_manager">Click <i>'New'</i> in the top-right corner to create your first product.</p>
+                                    <p t-ignore="true" groups="sales_team.group_sale_manager">
+                                        Click
+                                        <i>'New'</i>
+                                        in the top-right corner to create your first product.
+                                    </p>
                                 </div>
                             </t>
                             <!-- <div class="products_pager form-inline justify-content-center py-3">
@@ -65,9 +229,92 @@
                         </div>
                     </div>
                 </div>
-                <div class="oe_structure oe_empty oe_structure_not_nearest" id="oe_structure_website_sale_products_2"/>
+                <div class="oe_structure oe_empty oe_structure_not_nearest" id="oe_structure_website_sale_products_2" />
             </div>
         </t>
     </template>
-    
+
+    <!-- /shop product listing -->
+    <template id="featured_products" name="Products">
+        <t t-call="website.layout">
+            <t t-set="additional_title">Featured products</t>
+            <div id="wrap" class="js_sale">
+                <div class="oe_structure oe_empty oe_structure_not_nearest" id="oe_structure_website_sale_products_1" />
+                <div class="container oe_website_sale pt-2">
+                    <div class="row o_wsale_products_main_row">
+                        <div id="products_grid" t-attf-class="col #{'o_wsale_layout_list' if layout_mode == 'list' else ''}">
+                            <t t-call="website_sale.products_breadcrumb">
+                                <t t-set="_classes" t-valuef="w-100" />
+                            </t>
+                            <div t-if="bins" class="o_wsale_products_grid_table_wrapper">
+                                <table class="table table-borderless m-0" t-att-data-ppg="ppg" t-att-data-ppr="ppr">
+                                    <colgroup t-ignore="true">
+                                        <!-- Force the number of columns (useful when only one row of (x < ppr) products) -->
+                                        <col t-foreach="ppr" t-as="p" />
+                                    </colgroup>
+                                    <thead id="item_grid">
+                                        <strong>Featured products</strong>
+                                    </thead>
+                                    <tbody>
+                                        <tr t-foreach="bins" t-as="tr_product">
+                                            <t t-foreach="tr_product" t-as="td_product">
+                                                <t t-if="td_product">
+                                                    <t t-set="product" t-value="td_product['product']" />
+                                                    <!-- We use t-attf-class here to allow easier customization -->
+                                                    <td t-att-colspan="td_product['x'] != 1 and td_product['x']" t-att-rowspan="td_product['y'] != 1 and td_product['y']" t-attf-class="oe_product" t-att-data-ribbon-id="td_product['ribbon'].id" style="border: 0;">
+                                                        <div t-attf-class="o_wsale_product_grid_wrapper o_wsale_product_grid_wrapper_#{td_product['x']}_#{td_product['y']}">
+                                                            <t t-call="website_sale.products_item">
+                                                                <t t-set="product_image_big" t-value="td_product['x'] + td_product['y'] &gt; 2" />
+                                                            </t>
+                                                        </div>
+                                                    </td>
+                                                </t>
+                                                <td t-else="" />
+                                            </t>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <t t-else="">
+                                <div class="text-center text-muted mt128 mb256">
+                                    <t t-if="not search">
+                                        <h3 class="mt8">No product defined</h3>
+                                        <p t-if="category">
+                                            No product defined in category "
+                                            <strong t-esc="category.display_name" />
+                                            ".
+                                        </p>
+                                    </t>
+                                    <t t-else="">
+                                        <h3 class="mt8">No results</h3>
+                                        <p>
+                                            No results for "
+                                            <strong t-esc='search' />
+                                            "
+                                            <t t-if="category">
+                                                in category "
+                                                <strong t-esc="category.display_name" />
+                                                "
+                                            </t>
+                                            .
+                                        </p>
+                                    </t>
+                                    <p t-ignore="true" groups="sales_team.group_sale_manager">
+                                        Click
+                                        <i>'New'</i>
+                                        in the top-right corner to create your first product.
+                                    </p>
+                                </div>
+                            </t>
+                            <div class="products_pager form-inline justify-content-center py-3">
+                                <t t-call="website.pager" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="oe_structure oe_empty oe_structure_not_nearest" id="oe_structure_website_sale_products_2" />
+            </div>
+        </t>
+    </template>
+
 </odoo>

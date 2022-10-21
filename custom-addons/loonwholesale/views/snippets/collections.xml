@@ -6,13 +6,15 @@
                 <t t-foreach="categs" t-as="categ">
                     <div class="s_col_no_bgcolor pt16 pb16 col-lg-3">
                         <div class="card h-100" style="background-color: rgb(228, 228, 228) !important;">
-                            <t t-set="categ_source" t-value="image_data_uri(categ.image_512)" />
-                            <img class="card-img-top" t-att-src="categ_source" alt="" loading="lazy" data-original-id="445" t-att-data-original-src="categ_source" data-mimetype="image/jpeg" aria-describedby="tooltip359613" />
-                            <div class="card-body">
-                                <h3 class="card-title">
-                                    <span t-esc="categ.name" />
-                                </h3>
-                            </div>
+                            <t t-if="categ.image_512">
+                                <t t-set="categ_source" t-value="image_data_uri(categ.image_512)" />
+                                <img class="card-img-top" t-att-src="categ_source" alt="" loading="lazy" data-original-id="445" t-att-data-original-src="categ_source" data-mimetype="image/jpeg" aria-describedby="tooltip359613" />
+                                <div class="card-body">
+                                    <h3 class="card-title">
+                                        <span t-esc="categ.name" />
+                                    </h3>
+                                </div>
+                            </t>
                         </div>
                     </div>
                 </t>
