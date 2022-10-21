@@ -11,9 +11,13 @@
         
     </template>
 
-    <template id="template_header_default_extend">
+    <template id="loonwhole_template_header_default">
         <ul id="bottom_menu_ids" class="bottom_menu_list">
-            <li class="bottom_menu_list__item"></li>
+            <t t-foreach="bins" t-as="item">
+                <li class="bottom_menu_list__item">
+                    <t t-esc="item"/>
+                </li>
+            </t>
         </ul>
     </template>
 

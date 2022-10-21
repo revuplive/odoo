@@ -68,12 +68,12 @@ class ProductData(WebsiteSale):
     def top_category_list(self, **post):
         pro_temp_obj = request.env['product.template'].sudo()
         top_menus = request.env['product.public.category'].sudo().search([])
-        for menu in top_menus:
-            pro_temp_obj.search([('public_categ_ids.ids', 'contains', menu.id)])
+        # for menu in top_menus:
+        #     pro_temp_obj.search([('public_categ_ids.ids', 'contains', menu.id)])
         values = {
-            'bins': self._compute_item_per_row(collections),
+            'bins': [t.name for t in top_menus],
         }
-        return request.render("loonwholesale.loon_products", values)
+        return request.render("loonwholesale.loonwhole_template_header_default", values)
 
     @http.route('/featured-products', auth='public', type='http', website=True)
     def featured(self, page=0, category=None, search='', min_price=0.0, max_price=0.0, ppg=False, **post):
