@@ -8,14 +8,15 @@
         <xpath expr="//div[@id='wrapwrap']" position="before">
             <t t-call="loonwholesale.loon_cart_summary_snippet" />
         </xpath>
-        
     </template>
 
     <template id="loonwhole_template_header_default">
         <ul id="bottom_menu_ids" class="bottom_menu_list">
             <t t-foreach="bins" t-as="item">
                 <li class="bottom_menu_list__item">
-                    <t t-esc="item"/>
+                    <a href="#" class="bottom_menu_list__item_link">
+                        <t t-esc="item" />
+                    </a>
                 </li>
             </t>
         </ul>

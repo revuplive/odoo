@@ -56,7 +56,9 @@ class ProductData(WebsiteSale):
         return request.render('loonwholesale.loon_featured_products_snippet', values)
 
 
-    @http.route('/collections', auth='public', type='http', website=True)
+    @http.route(
+        '/collections', 
+        auth='public', type='http', website=True)
     def collections(self, **post):
         collections = request.env['product.public.category'].sudo().search([])
         values = {

@@ -21,6 +21,9 @@ odoo.define('loonwholesale.loonwholesale', function (require) {
             // const myNodelist = document.querySelectorAll("section.s_three_columns");
             // show loader
 
+            // add top-menu-list
+            this.callserver('/top-category-list', null, this.menu_show)
+
             // show banner element
             this.callserver('/home/banner/metadata', null, this.banner_show)
             
@@ -45,6 +48,10 @@ odoo.define('loonwholesale.loonwholesale', function (require) {
             this.$stateOptions = this.$state.filter(':enabled').find('option:not(:first)');
 
             return def;
+        },
+
+        menu_show: function(result) {
+            $('#top_menu_container').append(result);
         },
 
         banner_show: function(result) {
