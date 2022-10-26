@@ -14,8 +14,8 @@
         <ul id="bottom_menu_ids" class="bottom_menu_list">
             <t t-foreach="bins" t-as="item">
                 <li class="bottom_menu_list__item">
-                    <a href="#" class="bottom_menu_list__item_link">
-                        <t t-esc="item" />
+                    <a t-attf-href="/collections/#{slug(item)}" class="bottom_menu_list__item_link">
+                        <t t-esc="item.name" />
                     </a>
                 </li>
             </t>
@@ -317,6 +317,35 @@
                 <div class="oe_structure oe_empty oe_structure_not_nearest" id="oe_structure_website_sale_products_2" />
             </div>
         </t>
+    </template>
+
+    <template id="products_breadcrumb_extended" inherit_id="website_sale.products_breadcrumb">
+        <xpath expr="//ol" position="replace">
+            <ol t-if="category" t-attf-class="breadcrumb #{_classes}">
+                <li class="breadcrumb-item">
+                    <a t-att-href="url">Products</a>
+                </li>
+                <t t-foreach="category.parents_and_self" t-as="cat">
+                    <li t-if="cat == category" class="breadcrumb-item">
+                        <span class="d-inline-block" t-field="cat.name"/>
+                    </li>
+                    <li t-else="" class="breadcrumb-item">
+                        <a t-attf-href="keep('%s/%s' % (url, slug(cat)), category=0)" t-field="cat.name"/>
+                    </li>
+                </t>
+            </ol>
+        </xpath>
+    </template>
+
+    <template id="products_item" inherit_id="website_sale.products_item">
+        <xpath expr="//t[@t-set='product_href']" position="replace">
+            <t t-if="category">
+                <t t-set="product_href" t-value="keep('/collections/%s/products/%s' % (slug(category), slug(product)), page=(pager['page']['num'] if pager['page']['num']&gt;1 else None))" />
+            </t>
+            <t t-else="">
+                <t t-set="product_href" t-value="keep('/featured-products/products/%s' % slug(product), page=(pager['page']['num'] if pager['page']['num']&gt;1 else None))" />
+            </t>
+        </xpath>
     </template>
 
 </odoo>

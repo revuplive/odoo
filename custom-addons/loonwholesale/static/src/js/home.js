@@ -55,7 +55,7 @@ odoo.define('loonwholesale.loonwholesale', function (require) {
         },
 
         banner_show: function(result) {
-            const myNodelist = document.querySelectorAll("section.s_image_gallery");
+            const myNodelist = document.querySelectorAll("section.s_cover");
             [...myNodelist][0].innerHTML = result;
         },
 

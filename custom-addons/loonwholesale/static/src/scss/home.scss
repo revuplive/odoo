@@ -423,3 +423,23 @@ section .s_allow_columns {
     padding-left: 20px;
     width: 90%;
 }
+
+.s_newsletter_subscribe_form .input-group {
+    position: relative;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-wrap: wrap;
+    flex-wrap: wrap;
+    align-items: center;
+    width: 50% !important;
+    margin: auto !important;
+}
+
+.o_brand_promotion {
+    display: none !important;
+}
+
+.o_footer_copyright .o_not_editable {
+    display: none !important;
+}

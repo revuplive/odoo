@@ -75,15 +75,15 @@ class ProductWizard(models.TransientModel):
 
     def _process_product(self, path, imgdata):
         variant = False
-        pathnames = path.split('/')[1:]
+        pathnames = path.split('/')
         _logger.info(pathnames)
         # without variant
-        if len(pathnames) == 2:
+        if len(pathnames) == 1:
             category = pathnames[0]
             pro_name = pathnames[-1].split('.')[0]
 
         # with variant
-        if len(pathnames) == 3:
+        if len(pathnames) == 2:
             category = pathnames[0]
             variant = pathnames[1]
             pro_name = ".".join(pathnames[-1].split('.')[:-1])
