@@ -11,7 +11,7 @@
                                 <img class="card-img-top" t-att-src="categ_source" alt="" loading="lazy" data-original-id="445" t-att-data-original-src="categ_source" data-mimetype="image/jpeg" aria-describedby="tooltip359613" />
                                 <div class="card-body">
                                     <h3 class="card-title">
-                                        <a t-attf-href="/collections/#{slug(categ)}" t-att-alt="categ.name">
+                                        <a t-attf-href="/collections/#{slug(categ)}" t-att-alt="categ.name" class="product__link">
                                             <span t-esc="categ.name" />
                                         </a>
                                     </h3>

@@ -14,6 +14,11 @@
         <field name="bundle">web.assets_frontend</field>
         <field name="path">/loonwholesale/static/src/js/home.js</field>
     </record>
+    <record id="loonwholesale_product_js" model="ir.asset">
+        <field name="name">LoonwholeSale Product JS</field>
+        <field name="bundle">web.assets_frontend</field>
+        <field name="path">/loonwholesale/static/src/js/product.js</field>
+    </record>
     <!-- <record id="loonwholesale_home_js" model="ir.asset">
         <field name="name">LoonwholeSale Home JS</field>
         <field name="bundle">web.assets_frontend</field>

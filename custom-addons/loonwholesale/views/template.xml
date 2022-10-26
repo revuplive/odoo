@@ -346,6 +346,15 @@
                 <t t-set="product_href" t-value="keep('/featured-products/products/%s' % slug(product), page=(pager['page']['num'] if pager['page']['num']&gt;1 else None))" />
             </t>
         </xpath>
+
+        <xpath expr="//form" position="after">
+            <div class="cart_detail">
+                <input type="number" class="addtc" name="addtc_quantity" value="1" min="1" step="1" pattern="[0-9]*"></input>
+                <i class="fa fa-shopping-cart add-to-cart" title="Add to cart"/>
+            </div>
+        </xpath>
     </template>
+
+
 
 </odoo>

@@ -10,7 +10,7 @@
                             <img class="card-img-top" t-att-src="product_source" t-att-alt="feature.name" loading="lazy" data-original-id="445" t-att-data-original-src="product_source" data-mimetype="image/jpeg" aria-describedby="tooltip359613" />
                             <div class="card-body">
                                 <h3 class="card-title">
-                                    <a t-attf-href="/featured-products/products/#{slug(feature)}">
+                                    <a t-attf-href="/featured-products/products/#{slug(feature)}" class="product__link">
                                         <span t-esc="feature.name" />
                                     </a>
                                 </h3>

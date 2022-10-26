@@ -50,7 +50,7 @@ ul#bottom_menu_ids li {
     font-weight: 500 !important;
     font-style: normal !important;
     line-height: 20px !important;
-    padding: 15px 20px!important;
+    padding: 15px 20px !important;
     display: flex;
     align-items: center;
     justify-content: start;
@@ -58,7 +58,7 @@ ul#bottom_menu_ids li {
     display: block;
     letter-spacing: 0;
     text-transform: none;
-    text-shadow: none!important;
+    text-shadow: none !important;
     white-space: normal;
 
 }
@@ -105,8 +105,6 @@ section.s_text_block div.s_allow_columns.o_container_small {
 
 // Cart-summary
 #cart-summary {
-    margin-top: 12px;
-    margin-bottom: 12px;
     border-right: 12px solid #333333;
     height: calc(100vh - 24px);
     transform: translate3d(-100%, 0, 0);
@@ -442,4 +440,80 @@ section .s_allow_columns {
 
 .o_footer_copyright .o_not_editable {
     display: none !important;
+}
+
+.product__link {
+    color: inherit;
+    text-decoration: none;
+}
+
+.cart_detail {
+    z-index: 1000;
+    display: block;
+    height: 38px;
+    width: 4rem;
+    float: right;
+    margin-left: auto;
+}
+
+i.add-to-cart {
+    z-index: 100;
+    /* float: right; */
+    position: absolute;
+    /* margin-left: auto; */
+    /* margin-right: 0; */
+    margin-left: 2rem;
+    margin-top: 2px;
+    border: 1px solid #f727a1;
+    border-radius: 50%;
+    background: #f727a1;
+    font-size: 20px;
+    color: #000000;
+    padding: 6px;
+    cursor: pointer;
+}
+
+input.addtc-quantity-field[name="addtc_quantity"] {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+input.addtc-quantity-field.addtc-q-circle {
+    padding: 5px 30px 5px 4px !important;
+    right: 0px !important;
+    top: 0px !important;
+    padding-right: 45px !important;
+    right: 0px !important;
+    top: 0px !important;
+    border-radius: 17px !important;
+    text-align: center !important;
+    z-index: 1000;
+}
+input.addtc-quantity-field {
+    position: absolute;
+    background: #FFFFFF;
+    width: 68px;
+    width: 76px;
+    height: 34px;
+    min-height: 34px;
+    display: block;
+    margin: 0;
+    text-align: center;
+    border: 1px solid #FFFFFF;
+    color: #A0A0A0;
+    box-sizing: border-box;
+    z-index: 9;
+    z-index: 9;
+    opacity: 1 !important;
+}
+
+.addtc {
+    position: absolute;
+    border-radius: 20px;
+    height: inherit;
+    font-size: 16px;
+    padding: 0 10px;
+    background: white;
+    color: gray;
 }
