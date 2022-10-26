@@ -14,7 +14,7 @@
 
                 <div class="cart-summary__header cart-summary__section">
                     <h5 class="cart-summary__title">Your Order</h5>
-                    <a class="cart-summary__cart-link" href="/cart">View cart</a>
+                    <a class="cart-summary__cart-link" href="/shop/cart">View cart</a>
                 </div>
 
                 <t t-if="cart_items">
