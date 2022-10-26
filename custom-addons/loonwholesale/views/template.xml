@@ -10,6 +10,18 @@
         </xpath>
     </template>
 
+    <template id="loonwhole_top_navbar" inherit_id="website.navbar">
+        <xpath expr="//nav" position="before">
+            <ol class="top-nav-bar">
+                <li>Login</li>
+                <li>/</li>
+                <li>Join</li>
+                <li>/</li>
+                <li><i class="fa fa-search"/>Search</li>
+            </ol>
+        </xpath>
+    </template>
+
     <template id="loonwhole_template_header_default">
         <ul id="bottom_menu_ids" class="bottom_menu_list">
             <t t-foreach="bins" t-as="item">
@@ -168,19 +180,21 @@
                                                     <td class="oe_product">
                                                         <div class="o_wsale_product_grid_wrapper o_wsale_product_grid_wrapper_1_1">
                                                             <div class="card oe_product_cart" itemscope="itemscope" data-publish="on">
-                                                                <a class="o_product_link css_editable_mode_hidden" data-oe-model="ir.ui.view" data-oe-id="1245" data-oe-field="arch" data-oe-xpath="/t[1]/form[1]/a[1]" href="/shop/warranty-29"></a>
+                                                                <a class="o_product_link css_editable_mode_hidden" t-attf-href="/collections/#{slug(td_product)}" t-att-alt="td_product.name"></a>
                                                                 <div class="card-body p-1 oe_product_image">
-                                                                    <a class="d-block h-100" itemprop="url" href="/shop/warranty-29">
+                                                                    <a class="d-block h-100" t-attf-href="/collections/#{slug(td_product)}" t-att-alt="td_product.name">
                                                                         <span data-oe-model="product.template" data-oe-id="29" data-oe-field="image_1920" data-oe-type="image" data-oe-expression="image_holder.image_1920" class="d-flex h-100 justify-content-center align-items-center" data-oe-xpath="/t[1]/form[1]/div[1]/a[1]/span[1]">
                                                                             <t t-set="product_source" t-value="image_data_uri(td_product.image_512)" />
-                                                                            <img t-att-src="product_source" itemprop="image" class="img img-fluid" alt="Warranty" loading="lazy" style="" />
+                                                                            <img t-att-src="product_source" itemprop="image" class="img img-fluid" t-att-alt="td_product.name" loading="lazy" style="" />
                                                                         </span>
                                                                     </a>
                                                                 </div>
                                                                 <div class="card-body p-0 o_wsale_product_information">
                                                                     <div class="p-2 o_wsale_product_information_text">
                                                                         <h6 class="o_wsale_products_item_title mb-1">
-                                                                            <a data-oe-model="product.template" data-oe-id="29" data-oe-field="name" data-oe-type="char" data-oe-expression="product.name" class="text-primary text-decoration-none" itemprop="name" data-oe-xpath="/t[1]/form[1]/div[2]/div[1]/h6[1]/a[1]" href="/shop/warranty-29" content="Warranty">Warranty</a>
+                                                                            <a t-attf-href="/collections/#{slug(td_product)}" t-att-alt="td_product.name" class="product__link">
+                                                                                <span t-esc="td_product.name" />
+                                                                            </a>
                                                                         </h6>
                                                                     </div>
                                                                 </div>
@@ -350,7 +364,7 @@
         <xpath expr="//form" position="after">
             <div class="cart_detail">
                 <input type="number" class="addtc" name="addtc_quantity" value="1" min="1" step="1" pattern="[0-9]*"></input>
-                <i class="fa fa-shopping-cart add-to-cart" title="Add to cart"/>
+                <a class="fa fa-shopping-cart add-to-cart a-submit" title="Add to cart"/>
             </div>
         </xpath>
     </template>

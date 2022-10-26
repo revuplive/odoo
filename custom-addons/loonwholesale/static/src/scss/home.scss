@@ -19,6 +19,21 @@ ul#top_menu {
     display: none !important;
 }
 
+ol.top-nav-bar {
+    display: flex;
+    text-transform: uppercase;
+    font-size: 1em;
+    line-height: 36px;
+    padding: 0px 8rem;
+    background: #e9ecef;
+    margin: 0px;
+    list-style: none;
+}
+
+ol.top-nav-bar li {
+    padding: 5px 1px;
+}
+
 ul#bottom_menu_ids {
     line-height: 1.4;
     background-color: rgba(255, 255, 255, 0) !important;
@@ -38,9 +53,9 @@ ul#bottom_menu_ids {
     position: relative;
 }
 
-ul#bottom_menu_ids li {
-    border-left: 1px solid rgba(0, 0, 0, 1) !important;
-}
+// ul#bottom_menu_ids li {
+//     border-left: 1px solid rgba(0, 0, 0, 1) !important;
+// }
 
 .bottom_menu_list__item_link {
     padding: 15px 20px !important;
@@ -456,7 +471,7 @@ section .s_allow_columns {
     margin-left: auto;
 }
 
-i.add-to-cart {
+a.add-to-cart {
     z-index: 100;
     /* float: right; */
     position: absolute;
