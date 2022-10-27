@@ -12,5 +12,17 @@
                 </xpath>
             </field>
         </record>
+
+        <record id="public_categ_view_form" model="ir.ui.view">
+            <field name="name">product.public.category.form.inherit.loonwholesale</field>
+            <field name="model">product.public.category</field>
+            <field name="priority" eval="0" />
+            <field name="inherit_id" ref="website_sale.product_public_category_form_view" />
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='sequence']" position='after'>
+                    <field name='add_info' />
+                </xpath>
+            </field>
+        </record>
     </data>
 </odoo>

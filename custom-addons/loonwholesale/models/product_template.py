@@ -11,6 +11,11 @@ class IrAttachments(models.Model):
     slider_image = fields.Boolean('Is slider image', default=False)
     seq = fields.Integer(default=1)
 
+class PublicCategory(models.Model):
+    _inherit = 'product.public.category'
+
+    add_info = fields.Html("Additional Information")
+
 
 class ProductTemplateInherit(models.Model):
     _inherit = "product.template"

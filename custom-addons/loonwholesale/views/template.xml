@@ -17,7 +17,10 @@
                 <li>/</li>
                 <li>Join</li>
                 <li>/</li>
-                <li><i class="fa fa-search"/>Search</li>
+                <li>
+                    <i class="fa fa-search" />
+                    Search
+                </li>
             </ol>
         </xpath>
     </template>
@@ -341,10 +344,10 @@
                 </li>
                 <t t-foreach="category.parents_and_self" t-as="cat">
                     <li t-if="cat == category" class="breadcrumb-item">
-                        <span class="d-inline-block" t-field="cat.name"/>
+                        <span class="d-inline-block" t-field="cat.name" />
                     </li>
                     <li t-else="" class="breadcrumb-item">
-                        <a t-attf-href="keep('%s/%s' % (url, slug(cat)), category=0)" t-field="cat.name"/>
+                        <a t-attf-href="keep('%s/%s' % (url, slug(cat)), category=0)" t-field="cat.name" />
                     </li>
                 </t>
             </ol>
@@ -364,11 +367,57 @@
         <xpath expr="//form" position="after">
             <div class="cart_detail">
                 <input type="number" class="addtc" name="addtc_quantity" value="1" min="1" step="1" pattern="[0-9]*"></input>
-                <a class="fa fa-shopping-cart add-to-cart a-submit" title="Add to cart"/>
+                <a class="fa fa-shopping-cart add-to-cart a-submit" title="Add to cart" />
             </div>
         </xpath>
     </template>
 
-
-
+    <template id="product_inherit" inherit_id="website_sale.products">
+        <xpath expr="//t[@t-call='website_sale.products_breadcrumb']" position="replace"></xpath>
+        <xpath expr="//div[hasclass('products_header')]" position="replace">
+            <div class="product_header_block">
+                <h3>
+                    <t t-esc="category.name" />
+                </h3>
+                <p>
+                    <t t-esc="category.add_info" />
+                </p>
+            </div>
+            <div class="product_filters">
+                <t t-set="list_price_asc_label">Price - Low to High</t>
+                <t t-set="list_price_desc_label">Price - High to Low</t>
+                <t t-set="newest_arrivals_desc_label">Newest arrivals</t>
+                <t t-set="name_asc_label">Name</t>
+                <t t-set="website_sale_sortable" t-value="[
+                (list_price_asc_label, 'list_price asc'),
+                (list_price_desc_label, 'list_price desc'),
+                (newest_arrivals_desc_label, 'create_date desc'),
+                (name_asc_label, 'name asc')
+                ]" />
+                <t t-set="website_sale_sortable_current" t-value="[sort for sort in website_sale_sortable if sort[1]==request.params.get('order', '')]" />
+                <span style="margin: 8px 0px;" class='oe_search_found'><t t-esc="search_count or 0"/> result</span>
+                <div class="o_sortby_dropdown dropdown dropdown_sorty_by ml-3 pb-2">
+                    <span class="d-none d-lg-inline font-weight-bold text-muted">Sort By:</span>
+                    <a role="button" href="#" class="dropdown-toggle btn btn-light border-0 px-0 text-muted align-baseline" data-toggle="dropdown">
+                        <span class="d-none d-lg-inline">
+                            <t t-if='website_sale_sortable_current'>
+                                <t t-esc="website_sale_sortable_current[0][0]" />
+                            </t>
+                            <t t-else='1'>
+                            Featured
+                        </t>
+                        </span>
+                        <i class="fa fa-sort-amount-asc d-lg-none" />
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right" role="menu">
+                        <t t-foreach="website_sale_sortable" t-as="sortby">
+                            <a role="menuitem" rel="noindex,nofollow" t-att-href="keep('/shop', order=sortby[1])" class="dropdown-item">
+                                <span t-out="sortby[0]" />
+                            </a>
+                        </t>
+                    </div>
+                </div>
+            </div>
+        </xpath>
+    </template>
 </odoo>

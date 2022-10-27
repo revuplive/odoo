@@ -36,6 +36,15 @@ odoo.define('loonwholesale.loon_product', function (require) {
             });
         },
 
+        updateCartVal: function(data){
+            console.log(data);
+            document.getElementById('cart_with_items').classList.remove('d-none');
+            document.getElementById('cart_empty').classList.add("d-none");
+            document.getElementById('formdata').innerHTML = data['loon.cart_details'];
+            document.getElementById('subtotal_p').value = data['subtotal']
+            document.getElementById('count_p').value = data['items']
+        },
+
         _addToCart: function (ev) {
             var $item = $(ev.currentTarget);
             var $form = $item.parent().parent().find('form');
@@ -46,19 +55,18 @@ odoo.define('loonwholesale.loon_product', function (require) {
                 'add_qty': $input.val(),
                 'csrf_token': token
             }
-            console.log(data)
             // this.callserver('/shop/cart/update_json', data, null);
             return this._rpc({
-                route: "/shop/cart/update_json",
+                route: "/loon/cart/update_json",
                 params: data,
             }).then(async data => {
-                console.log(data, '++++++++++++====')
-                // if (data.cart_quantity && (data.cart_quantity !== parseInt($(".my_cart_quantity").text()))) {
-                //     await animateClone($('header .o_wsale_my_cart').first(), this.$itemImgContainer, 25, 40);
-                //     updateCartNavBar(data);
+                // if (data.cart_quantity && (data.cart_quantity !== parseInt($("#addtc-sticky-cart-count").text()))) {
+                    // await animateClone($('#addtc-sticky-cart').first(), this.$itemImgContainer, 25, 40);
+                    var txt = parseInt($("#addtc-sticky-cart-count").text()) +  data.cart_quantity;
+                    $("#addtc-sticky-cart-count").text(txt);
+                    this.updateCartVal(data);
                 // }
             });
-            $item.innerHtml = 'Added'
         }
     })
 });

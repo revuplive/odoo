@@ -68,3 +68,137 @@
     padding: 0;
     font-size: 1.8em;
 }
+
+#addtc-popup {
+    font-family: "Raleway",Arial,Helvetica,sans-serif;
+    font-family: "Open Sans","Raleway",Arial,Helvetica,sans-serif;
+    font-size: 13px;
+    font-size: 13px;
+    color: black;
+    position: fixed;
+    bottom: -150px;
+    right: 5px;
+    border-radius: 3px !important;
+    overflow: hidden;
+    z-index: 990;
+    overflow: hidden;
+    z-index: 99999999;
+    cursor: pointer;
+}
+
+.addtc-message {
+    text-align: right;
+    color: #7e7e7e;
+    color: #7e7e7e;
+    font-style: italic;
+    margin-bottom: 5px;
+    margin-right: 8px;
+    margin-left: 8px;
+}
+
+.addtc-image {
+    height: 100%;
+    z-index: 999;
+    text-align: right;
+}
+
+.addtc-image>div {
+    display: inline-block;
+    margin: 0 2px;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    border-radius: 50% !important;
+    width: 50px;
+    height: 50px;
+}
+
+#addtc-sticky-cart {
+    -webkit-border-radius: 50% !important;
+    -moz-border-radius: 50% !important;
+    border-radius: 50% !important;
+    width: 50px;
+    height: 50px;
+    position: fixed;
+    right: 15px;
+    right: 15px;
+    z-index: 9999;
+    z-index: 1000;
+    bottom: initial;
+    cursor: pointer;
+    background: #ffffff;
+    background: #EBEBEB;
+    color: black;
+    color: #000000;
+    // box-shadow: 0px 0px 4px 1px rgb(3 3 3 / 15%);
+    -moz-transform: scale(1.2);
+    -webkit-transform: scale(1.2);
+    -ms-transform: scale(1.2);
+    -o-transform: scale(1.2);
+    transform: scale(1.2);
+    display: none;
+}
+
+.addtc-bounce-in {
+    -moz-animation: addtc-bounce .40s linear;
+    -webkit-animation: addtc-bounce .40s linear;
+    animation: addtc-bounce .40s linear;
+}
+
+#addtc-sticky-cart .addtc-cart-icon {
+    font-size: 20px !important;
+    text-align: center !important;
+    line-height: 48px !important;
+    width: 100%;
+}
+.gglyphicon {
+    position: relative;
+    top: 1px;
+    display: inline-block;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+}
+
+.gglyphicon-shopping-cart:before {
+    content: "\e116";
+}
+
+#addtc-sticky-cart span#addtc-sticky-cart-count {
+    -webkit-border-radius: 20px !important;
+    -moz-border-radius: 20px !important;
+    border-radius: 20px !important;
+    width: 20px;
+    height: 20px;
+    background-color: red;
+    background: #f511d6;
+    position: absolute;
+    top: -5px;
+    top: -5px;
+    left: -10px;
+    left: -10px;
+    font-size: 10px;
+    line-height: 20px;
+    color: whitesmoke;
+    color: #ffffff;
+    font-family: "Raleway",Arial,Helvetica,sans-serif;
+    font-family: "Open Sans","Raleway",Arial,Helvetica,sans-serif;
+}
+
+.product_filters {
+    display: flex;
+    justify-content: end;
+    gap: 1rem;
+}
+
+.o_sortby_dropdown a.align-baseline {
+    border: 1px solid gray !important;
+    width: 8rem;
+    margin-left: 1rem;
+    border-radius: 0;
+}

@@ -6,12 +6,11 @@ from odoo import http
 from odoo import fields, http, SUPERUSER_ID, tools, _
 from odoo.http import request
 from odoo.addons.web.controllers.main import Home, ensure_db
-from odoo.addons.website_sale.controllers.main import WebsiteSale
+from odoo.addons.website_sale.controllers.main import WebsiteSale, TableCompute
 from odoo.exceptions import AccessError, UserError, AccessDenied
-from odoo.addons.website_sale.controllers.main import TableCompute
 from odoo.addons.http_routing.models.ir_http import slug
 from odoo.addons.website.controllers.main import QueryURL
-
+from odoo.tools.json import scriptsafe as json_scriptsafe
 
 
 
@@ -419,3 +418,62 @@ class ProductData(WebsiteSale):
     ] , auth='public', type='http', website=True)
     def featured_product_selected(self, product, category='', search='', **kwargs):
         return request.render("website_sale.product", self._prepare_product_values(product, category, search, **kwargs))
+
+
+    @http.route(['/loon/cart/update_json'], type='json', auth="public", methods=['POST'], website=True, csrf=False)
+    def cart_update_json(self, product_id, line_id=None, add_qty=None, set_qty=None, display=True, **kw):
+        """
+        This route is called :
+            - When changing quantity from the cart.
+            - When adding a product from the wishlist.
+            - When adding a product to cart on the same page (without redirection).
+        """
+        order = request.website.sale_get_order(force_create=1)
+        if order.state != 'draft':
+            request.website.sale_reset()
+            if kw.get('force_create'):
+                order = request.website.sale_get_order(force_create=1)
+            else:
+                return {}
+
+        pcav = kw.get('product_custom_attribute_values')
+        nvav = kw.get('no_variant_attribute_values')
+        value = order._cart_update(
+            product_id=product_id,
+            line_id=line_id,
+            add_qty=add_qty,
+            set_qty=set_qty,
+            product_custom_attribute_values=json_scriptsafe.loads(pcav) if pcav else None,
+            no_variant_attribute_values=json_scriptsafe.loads(nvav) if nvav else None
+        )
+
+        if not order.cart_quantity:
+            request.website.sale_reset()
+            return value
+
+        order = request.website.sale_get_order()
+        value['cart_quantity'] = order.cart_quantity
+
+        if not display:
+            return value
+
+        # value['website_sale.cart_lines'] = request.env['ir.ui.view']._render_template("website_sale.cart_lines", {
+        #     'website_sale_order': order,
+        #     'date': fields.Date.today(),
+        #     'suggested_products': order._cart_accessories()
+        # })
+        # value['website_sale.short_cart_summary'] = request.env['ir.ui.view']._render_template("website_sale.short_cart_summary", {
+        #     'website_sale_order': order,
+        # })
+        value['loon.cart_details'] = request.env['ir.ui.view']._render_template("loonwholesale.cart_item_lines", {
+            'order': order,
+        })
+        value['subtotal'] = order.amount_total
+        
+        items = 0
+        for item in order.order_line:
+            items += item.product_uom_qty 
+        value['items'] = items
+
+        _logger.info("**************%s", value)
+        return value
